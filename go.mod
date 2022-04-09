@@ -2,12 +2,11 @@ module github.com/quantumsheep/plouf/example
 
 go 1.18
 
-replace github.com/quantumsheep/plouf => ../plouf
-
 require github.com/labstack/echo/v4 v4.7.2
 
 require (
-	github.com/quantumsheep/plouf v0.0.0-00010101000000-000000000000
+	github.com/joho/godotenv v1.4.0
+	github.com/quantumsheep/plouf v0.0.0-20220409224749-62045dcf2bf2
 	github.com/stretchr/testify v1.7.0
 	gorm.io/gorm v1.23.4
 )
