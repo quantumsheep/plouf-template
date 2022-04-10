@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/quantumsheep/plouf"
 	"github.com/quantumsheep/plouf/example/entities"
-	modules_users_dto "github.com/quantumsheep/plouf/example/modules/users/dto"
+	dto "github.com/quantumsheep/plouf/example/modules/users/dto"
 )
 
 type UsersController struct {
@@ -23,7 +23,7 @@ func (c *UsersController) InitRoutes(e *echo.Echo) {
 }
 
 func (c *UsersController) CreateUser(ctx echo.Context) error {
-	var dto modules_users_dto.CreateUserBodyDTO
+	var dto dto.CreateUserBodyDTO
 	if err := plouf.ValidateAndBind(ctx, &dto); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -41,7 +41,7 @@ func (c *UsersController) CreateUser(ctx echo.Context) error {
 func (c *UsersController) GetById(ctx echo.Context) error {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		return err
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	user, err := c.UsersService.FindById(id)
